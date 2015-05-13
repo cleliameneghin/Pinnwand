@@ -1,24 +1,20 @@
 package Pinnwand;
 
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 public class Main {
 	public static void main(String[] args) throws IOException {
-		String text;
-
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Gib einen Text ein");
-		text = sc.next();
-		Save s = new Save(text);
 		
-		String adress ="/home/clelia/Dokumente/Schule/Pratteln/4.Semester/226Java/";
-		String file_name = adress+"test.txt";
+		Save save = new Save("/home/clelia/Schreibtisch/", "pinnwand.txt");
 		
-				
-				Save data = new Save(file_name, true);
-		data.writeToFile(text);
-		
+		JFrame inputFrame = new InputFrame(save);
+		new Frame("Pinnwand", new Dimension(300,300), inputFrame);
 		
 	}
+
+	
 }
