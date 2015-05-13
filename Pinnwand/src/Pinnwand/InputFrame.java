@@ -11,31 +11,23 @@ import javax.swing.JTextArea;
 
 /**
  * The Class IputFrame is a Frame for add new Notes in the Pinnwand program.
- * @author musdasch
+ * Categorie: addNote
  *
  */
 public class InputFrame extends JFrame implements ActionListener {
 	
-	/**
-	 * the textArea holds the text area for typing the notes.
-	 */
+	/** the textArea holds the text area for typing the notes.*/
 	private JTextArea textArea;
 	
-	/**
-	 * The saveButton holds the button for saving the notes.
-	 */
+	/** The saveButton holds the button for saving the notes. */
 	private JButton saveButton;
 	
-	/**
-	 * The save holds the Save object for writing. 
-	 */
+	/** The save holds the Save object for writing. */
 	private Save save;
 	
-	/**
-	 * The Constructor includes the save object from the Main class and add the textArea and the saveButton
+	/** The Constructor includes the save object from the Main class and add the textArea and the saveButton
 	 * on the frame. the visibility form the frame is default false.
-	 * @param save - includes the object for saving.
-	 */
+	 * @param save - includes the object for saving.*/
 	public InputFrame(Save save) {
 		
 		this.save = save;

@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * The Save class handles the writing in files.
- * @author musdasch
+ * 
  */
 public class Save {
 	/**

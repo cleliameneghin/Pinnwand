@@ -5,18 +5,20 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
 public class Frame extends JFrame{
 	
-	private JLabel textLabel;
+	private JPanel textLabel;
 	private JFrame inputFrame;
 	private JButton newButton;
 	
@@ -24,10 +26,9 @@ public class Frame extends JFrame{
 		
 		this.inputFrame = inputFrame;
 		
-		textLabel = new JLabel("I' m a Label in the window", SwingConstants.CENTER);
+		textLabel = new JPanel();
 		textLabel.setPreferredSize(new Dimension(500,500));
 		
-		//Kann man schöner Lösen
 		newButton = new JButton("New Notiz");
 		newButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -45,6 +46,8 @@ public class Frame extends JFrame{
 		p.add(editItem);
 		addMouseListener(new RightClick(p));
 		
+		
+		
 		this.setTitle(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -54,5 +57,25 @@ public class Frame extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.pack();
 		this.setVisible(true);
+		
+		/*Anzahl Notizen im ordner werden abgefragt und ausgegeben*/
+		final File folder = new File("./files/notes/");
+		listFilesForFolder(folder);
+			
+		
 	}
+	/*Anzahl Notizen werden abgefragt in einer bestimmten directory*/
+	public void listFilesForFolder(final File folder){
+		for(final File fileEntry: folder.listFiles()){
+			if(fileEntry.isDirectory()){
+				listFilesForFolder(fileEntry);
+	
+			}
+			else{
+				System.out.println(fileEntry.getName());
+			}
+		}
+		
+	}
+
 }
