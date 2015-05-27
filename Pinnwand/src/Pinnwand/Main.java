@@ -11,8 +11,9 @@ public class Main {
 		
 		Save save = new Save("./files/notes/", "pinnwand.txt");
 		
-		JFrame inputFrame = new InputFrame(save);
-		new Frame("Pinnwand", new Dimension(300,300), inputFrame);
+		InputFrame inputFrame = new InputFrame(save, true);
+		Frame frame = Frame.getInstance(inputFrame);
+		frame.setTitle("Pinnwand");
 		
 	}
 

@@ -25,12 +25,15 @@ public class InputFrame extends JFrame implements ActionListener {
 	/** The save holds the Save object for writing. */
 	private Save save;
 	
+	private boolean newMode = false;
+	
 	/** The Constructor includes the save object from the Main class and add the textArea and the saveButton
 	 * on the frame. the visibility form the frame is default false.
 	 * @param save - includes the object for saving.*/
-	public InputFrame(Save save) {
+	public InputFrame(Save save, boolean newMode) {
 		
 		this.save = save;
+		this.newMode = newMode;
 		
 		textArea = new JTextArea();
 		textArea.setPreferredSize( new Dimension(300,300) );
@@ -49,6 +52,10 @@ public class InputFrame extends JFrame implements ActionListener {
 		this.setVisible( false );
 	}
 	
+	public void setNewMode(boolean newmode) {
+		this.newMode = newmode;
+	}
+	
 	/**
 	 * This method waits for a action on the saveButton. If a action on the saveButton,
 	 * give the method the text form the textArea on the Save object, clear the textArea
@@ -57,8 +64,9 @@ public class InputFrame extends JFrame implements ActionListener {
 	public void actionPerformed ( ActionEvent ae ){
 		if( ae.getSource() == this.saveButton ){
 			this.setVisible( false );
-			save.writeToFile( textArea.getText() );
+			save.writeToFile( textArea.getText(), !newMode );
 			textArea.setText( "" );
+			Frame.getInstance(this).createButtonsofFiles();
 		}
 	}
 }
